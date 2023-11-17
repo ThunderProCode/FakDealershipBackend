@@ -1,4 +1,5 @@
 using System.Text;
+using AspNetCoreRateLimit;
 using FakeDealerAPI.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +41,14 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddMemoryCache();
+builder.Services.Configure<IpRateLimitOptions>(configuration.GetSection("IpRateLimiting"));
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddLogging();
+builder.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -55,6 +64,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseIpRateLimiting();
 
 // Authentication & Authorization
 app.UseAuthentication();

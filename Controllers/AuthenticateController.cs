@@ -1,4 +1,5 @@
 using FakeDealerAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -57,6 +58,7 @@ public class AuthenticateController : ControllerBase
 
     [HttpPost]
     [Route("register")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
     {
         var userExists = await _userManager.FindByNameAsync(model.Username);
@@ -78,6 +80,7 @@ public class AuthenticateController : ControllerBase
 
     [HttpPost]
     [Route("register-admin")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
     {
         var userExists = await _userManager.FindByNameAsync(model.Username);
