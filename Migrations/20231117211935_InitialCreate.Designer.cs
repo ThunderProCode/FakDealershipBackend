@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FakeDealerAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231117155023_InitialCreate")]
+    [Migration("20231117211935_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

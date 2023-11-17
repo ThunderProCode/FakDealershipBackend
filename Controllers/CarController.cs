@@ -28,7 +28,7 @@ public class CarController: ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([FromBody] Car car)
     {
         if (!ModelState.IsValid)
@@ -42,7 +42,7 @@ public class CarController: ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         var car = await _context.Cars.FindAsync(id);
@@ -57,7 +57,7 @@ public class CarController: ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(int id, [FromBody] Car updatedCar)
     {
         if (!ModelState.IsValid)
