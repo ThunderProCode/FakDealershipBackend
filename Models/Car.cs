@@ -33,7 +33,7 @@ public class Car
     public string? VIN { get; set; }
 
     [Required]
-    public DateTime Created { get; set; }
+    public DateTime Created { get; set; } = DateTime.Now;
 
     public List<string>? Features { get; set; }
     public List<string>? Images { get; set; }

@@ -35,7 +35,6 @@ public class CarController: ControllerBase
         {
             return BadRequest(ModelState);
         }
-
         _context.Cars.Add(car);
         await _context.SaveChangesAsync();
         return Ok();

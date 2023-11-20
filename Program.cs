@@ -13,6 +13,7 @@ ConfigurationManager configuration = builder.Configuration;
 
 // For Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>();
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // For Identity
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
