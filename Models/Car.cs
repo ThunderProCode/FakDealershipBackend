@@ -1,11 +1,12 @@
 namespace FakeDealerAPI.Models;
 
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Car
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     [Required]
     public string? Make { get; set; }
@@ -13,6 +14,14 @@ public class Car
     public string? Model { get; set; }
     [Required]
     public int? Year { get; set; }
+    [Required]
+    public string? Color { get; set; }
+    [Required]
+    public string? Body { get; set; }
+    [Required]
+    public string? Engine { get; set; }
+    [Required]
+    public int? Seats { get; set; }
     [Required]
     public int? Mileage { get; set; }
     [Required]
@@ -23,7 +32,11 @@ public class Car
     public double Price { get; set; }
     [Required]
     public string? VIN { get; set; }
-    public List<string>? Images { get; set; }
+
     [Required]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime Created { get; set; }
+
+    public List<string>? Features { get; set; }
+    public List<string>? Images { get; set; }
 }

@@ -81,6 +81,12 @@ public class CarController: ControllerBase
         existingCar.Price = updatedCar.Price;
         existingCar.VIN = updatedCar.VIN ?? existingCar.VIN;
         existingCar.Images = updatedCar.Images ?? existingCar.Images;
+        existingCar.Body = updatedCar.Body ?? existingCar.Body;
+        existingCar.Features = updatedCar.Features ?? existingCar.Features;
+        existingCar.Seats = updatedCar.Seats ?? existingCar.Seats;
+        existingCar.Color = updatedCar.Color ?? existingCar.Color;
+        existingCar.Engine = updatedCar.Engine ?? existingCar.Engine;
+        
         // Update other properties as needed...
 
         await _context.SaveChangesAsync();
