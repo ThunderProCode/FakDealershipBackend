@@ -36,6 +36,7 @@ public class CarController: ControllerBase
             return BadRequest(ModelState);
         }
 
+        car.Created = DateTime.Now;
         _context.Cars.Add(car);
         await _context.SaveChangesAsync();
         return Ok();
@@ -86,7 +87,7 @@ public class CarController: ControllerBase
         existingCar.Seats = updatedCar.Seats ?? existingCar.Seats;
         existingCar.Color = updatedCar.Color ?? existingCar.Color;
         existingCar.Engine = updatedCar.Engine ?? existingCar.Engine;
-        
+
         // Update other properties as needed...
 
         await _context.SaveChangesAsync();

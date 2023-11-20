@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Car
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     [Required]
     public string? Make { get; set; }
@@ -34,7 +33,6 @@ public class Car
     public string? VIN { get; set; }
 
     [Required]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime Created { get; set; }
 
     public List<string>? Features { get; set; }
