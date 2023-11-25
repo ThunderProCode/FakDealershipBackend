@@ -17,6 +17,16 @@ public class CarController: ControllerBase
         _context = context;
     }
 
+    [HttpGet("makes")]
+    public async Task<IActionResult> GetCarMakes()
+    {
+        var carMakes = await _context.Cars
+            .Select(car => car.Make)
+            .Distinct()
+            .ToListAsync();
+        return Ok(carMakes);
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
