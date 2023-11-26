@@ -1,5 +1,6 @@
 using FakeDealerAPI.Auth;
 using FakeDealerAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ public class OrderController: ControllerBase
 
     // GET: api/Orders
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
     {
         var orders = await _context.Orders.ToListAsync();
@@ -26,6 +28,7 @@ public class OrderController: ControllerBase
 
     // Get: api/Orders/5
     [HttpGet("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<Order>> GetOrder(int id)
     {
         var order = await _context.Orders.FindAsync(id);
@@ -38,7 +41,8 @@ public class OrderController: ControllerBase
 
     //Post: api/Orders
     [HttpPost]
-    public async Task<IActionResult<Order>> PostOrder(Order order)
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Create (Order order)
     {
         _context.Orders.Add(order);
         await _context.SaveChangesAsync();
@@ -47,6 +51,7 @@ public class OrderController: ControllerBase
 
     //PUT: api/Orders/5
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> PutOrder(int id, Order order)
     {
         if(id != order.Id)
@@ -71,7 +76,9 @@ public class OrderController: ControllerBase
     }
 
     // DELETE: api/Orders/8
+
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteOrder(int id)
     {  
         var order = await _context.Orders.FindAsync(id);
