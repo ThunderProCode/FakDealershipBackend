@@ -20,4 +20,5 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     }
 
     public DbSet<Car> Cars { get; set; }
+    public DbSet<Order> Orders { get; set; }
 }
