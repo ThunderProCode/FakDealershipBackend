@@ -53,14 +53,13 @@ builder.Services.AddCors(options => {
     options.AddPolicy("ProductionCorsPolicy",
         builder => 
         {
-            builder.WithOrigins("https://fake-dealer-hptd0cmxf-thunderprocode.vercel.app/")
+            builder.WithOrigins("https://fake-dealer-web-thunderprocode.vercel.app/")
             .AllowAnyHeader()
             .AllowAnyMethod();
         });
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
