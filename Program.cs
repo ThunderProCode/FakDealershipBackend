@@ -53,7 +53,7 @@ builder.Services.AddCors(options => {
     options.AddPolicy("ProductionCorsPolicy",
         builder => 
         {
-            builder.WithOrigins("http://localhost:3000")
+            builder.WithOrigins("https://fake-dealer-hptd0cmxf-thunderprocode.vercel.app/")
             .AllowAnyHeader()
             .AllowAnyMethod();
         });
