@@ -25,6 +25,21 @@ public class AuthenticateController : ControllerBase
         _configuration = configuration;
     }
 
+    [HttpGet]
+    [Route("validate-token")]
+    [Authorize]
+    public IActionResult ValidateToken()
+    {
+        // Token is valid since it passed the [Authorize] attribute
+        // You can perform additional checks if needed
+
+        // Extract user information from the token
+        var username = User.Identity.Name;
+        var roles = User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+
+        return Ok(new { Message = "Token is valid." });
+    }
+
     [HttpPost]
     [Route("login")]
     public async Task<IActionResult> Login([FromBody] LoginModel model)
